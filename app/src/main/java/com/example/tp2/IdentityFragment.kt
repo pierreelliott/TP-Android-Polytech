@@ -63,8 +63,4 @@ class IdentityFragment : Fragment() {
 
         return binding.root
     }
-    private fun validate(view: View) {
-        view.findNavController()
-            .navigate(IdentityFragmentDirections.actionIdentityFragmentToPersonalDataFragment(viewModel.user.value?:User()))
-    }
 }

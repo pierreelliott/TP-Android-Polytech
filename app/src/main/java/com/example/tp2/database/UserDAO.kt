@@ -20,4 +20,7 @@ interface UserDao
 
     @Query("SELECT * FROM user ORDER BY id DESC LIMIT 1")
     fun getLastUser(): User?
+
+    @Query("SELECT * FROM user")
+    fun getUsers(): List<User>?
 }

@@ -18,5 +18,13 @@
         <argument
             android:name="user"
             app:argType="com.example.tp2.model.User" />
+        <action
+            android:id="@+id/action_personalDataFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.tp2.ListFragment"
+        android:label="ListFragment" />
 </navigation>

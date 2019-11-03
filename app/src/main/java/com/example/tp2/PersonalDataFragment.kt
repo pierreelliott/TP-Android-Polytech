@@ -77,6 +77,12 @@ class PersonalDataFragment : Fragment() {
                 Toast.makeText(this.context, message, Toast.LENGTH_SHORT).show()
 
                 viewModel.doneValidateNavigating()
+
+                this.findNavController().navigate(
+                    R.id.action_personalDataFragment_to_listFragment
+//                    IdentityFragmentDirections
+//                        .actionPersonalDataFragmentToListFragment()
+                )
             }
         })
 
