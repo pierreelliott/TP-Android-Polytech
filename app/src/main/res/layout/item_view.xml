@@ -6,11 +6,15 @@
         <variable
             name="user"
             type="com.example.tp2.model.User" />
+        <variable
+            name="clickListener"
+            type="com.example.tp2.adapter.UserAdapter.UserListener" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(user)}"
         android:layout_margin="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

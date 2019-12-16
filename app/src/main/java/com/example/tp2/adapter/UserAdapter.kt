@@ -13,7 +13,7 @@ import com.example.tp2.model.User
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MyListAdapter : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallback()) {
+class UserAdapter(val clickListener: UserListener) : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()) {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val lastnameTv: TextView = itemView.findViewById(R.id.tv_lastname_item)
@@ -24,8 +24,9 @@ class MyListAdapter : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallba
 
     class ViewHolder private constructor(val binding: ItemViewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: User) {
+        fun bind(item: User, clickListener: UserListener) {
             binding.user = item
+            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
 
@@ -48,12 +49,17 @@ class MyListAdapter : ListAdapter<User, MyListAdapter.ViewHolder>(UserDiffCallba
         }
     }
 
+    class UserListener(val clickListener: (userid: Long) -> Unit) {
+        fun onClick(user: User) = clickListener(user.id)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
+//        val item = getItem(position)
+//        holder.bind(item)
+        holder.bind(getItem(position)!!, clickListener)
     }
 }

@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.tp2.adapter.MyListAdapter
+import com.example.tp2.adapter.UserAdapter
+import com.example.tp2.adapter.UserAdapter.UserListener
 import com.example.tp2.database.MyDatabase
 import com.example.tp2.databinding.FragmentListBinding
 import com.example.tp2.model.User
@@ -61,7 +63,9 @@ class ListFragment :  Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = MyListAdapter()
+        val adapter = UserAdapter(UserListener { userId ->
+            Toast.makeText(this.context,"UserID '$userId' clicked",Toast.LENGTH_SHORT).show()
+        })
         binding.list.adapter = adapter
 
         viewModel.users.observe(viewLifecycleOwner, Observer {
